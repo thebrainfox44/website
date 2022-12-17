@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
   if (req.url === "/search.png") {
     fs.readFile("./public/search.png", (e, data) => {
       if (e) throw e;
-      res.write(data.toLocaleString());
+      res.write(data);
       res.end();
     });
     return;
