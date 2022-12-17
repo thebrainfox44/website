@@ -7,8 +7,7 @@
     <style>
       .search {
         position: absolute;
-        margin-left: 15%;
-        margin-right: 15%;
+        margin-left: 13%;
         top: 25%;
         width: 68%;
       }
@@ -42,14 +41,25 @@
         display: inline-block;
       }
 
+      ::selection {
+        background-color: #ffad14;
+        color: #161616;
+      }
+
+      header::selection {
+        background-color: #ffad14;
+        color: #272727;
+      }
+
       .search-bar {
         height: 60px;
         border-radius: 50px;
         border: solid 2px #ffad14;
         background-color: #161616;
-        width: 100%;
+        width: 92%;
         outline: none;
         padding-left: 75px;
+        padding-right: 75px;
         font-size: 25px;
         color: #ffad14;
       }
@@ -66,6 +76,7 @@
         margin-top: -7px;
         margin-left: -10px;
         background-color: #272727;
+        z-index: 99;
       }
 
       header ul {
@@ -164,6 +175,120 @@
         position: absolute;
         right: 50px;
       }
+
+      .content {
+        position: relative;
+      }
+
+      .choice {
+        position: absolute;
+        text-align: center;
+        width: 95%;
+        height: 75px;
+        margin-top: 240px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .choice div {
+        display: inline;
+      }
+
+      .choice div div {
+        position: absolute;
+        border: solid #ffad14 2px;
+        border-radius: 5px;
+        height: 0;
+        width: 100px;
+        transform: translate(-110%, 60px);
+        visibility: hidden;
+      }
+
+      .choice div div#choice1 {
+        visibility: visible;
+      }
+
+      .films,
+      .series {
+        color: #ffad14;
+        background-color: transparent;
+        border: none;
+        font-size: 30px;
+        padding: 15px;
+        padding-bottom: 0;
+        margin: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+
+      .tile {
+        position: relative;
+        width: 90%;
+        height: 90%;
+        background-color: #272727;
+        padding: 10px;
+        border-radius: 5px;
+        margin: 20px;
+      }
+
+      .tile .title {
+        font-size: 25px;
+        margin-top: 0px;
+      }
+
+      .tile .img {
+        width: 100%;
+        height: 40%;
+        background-color: #ffad14;
+      }
+
+      .tile .desc {
+        font-size: 15px;
+        margin-top: -25px;
+        margin-bottom: -8px;
+      }
+
+      .tile .date {
+        font-size: 20px;
+      }
+
+      .tile .separator {
+        position: relative;
+      }
+
+      .tile .time {
+        font-size: 20px;
+      }
+
+      .tile .lang {
+        margin-top: -5px;
+      }
+
+      .tile .lang span {
+        font-size: 14px;
+        background-color: #ffad14;
+        color: #161616;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        border-radius: 3px;
+      }
+
+      .cat .films {
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        top: 285px;
+        left: 46%;
+        transform: translateX(-46%);
+        /* grid */
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 300px);
+        grid-column-gap: 15px;
+        grid-row-gap: 10px;
+      }
     </style>
   </head>
   <body>
@@ -194,8 +319,14 @@
         </div>
       </div>
     </header>
+    <!-- search -->
     <div class="search">
-      <input type="text" class="search-bar" id="search-bar" />
+      <input
+        type="text"
+        placeholder="chercher le nom d'un film, d'une série, d'une chaine tv ou un événement..."
+        class="search-bar"
+        id="search-bar"
+      />
       <div class="glass-ico" id="glass-ico">
         <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
           <path
@@ -213,8 +344,265 @@
         </svg>
       </div>
     </div>
+    <!-- end of search -->
+    <!-- films ou séries -->
+    <div class="content">
+      <div class="choice">
+        <div>
+          <button class="films" id="films-choice" onclick="films()">
+            films
+          </button>
+          <div id="choice1"></div>
+        </div>
+        <div>
+          <button class="series not" id="films-choice" onclick="series()">
+            séries
+          </button>
+          <div id="choice2"></div>
+        </div>
+      </div>
+      <div class="cat">
+        <div class="films" id="films">
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+          <div class="tile">
+            <div class="img"></div>
+            <h3 class="title">titre de test</h3>
+            <p class="desc">
+              description de test Lorem ipsum dolor, sit amet consectetur
+              adipisicing elit. Nesciunt, ipsa!
+            </p>
+            <span class="date">2022</span>
+            <span class="separator">•</span>
+            <span class="time">127 minutes</span>
+            <div class="lang">
+              <span>vo fr</span>
+              <span>vost fr</span>
+              <span>vo en</span>
+              <span>vo es</span>
+            </div>
+          </div>
+        </div>
+        <div class="series" id="series"></div>
+      </div>
+    </div>
     <script>
       console.warn("quest ce que tu fout la ???");
+
+      function films() {
+        document.getElementById("choice1").style.visibility = "visible";
+        document.getElementById("choice2").style.visibility = "hidden";
+        document.getElementById("series").style.display = "none";
+        document.getElementById("films").style.display = "grid";
+      }
+      function series() {
+        document.getElementById("choice2").style.visibility = "visible";
+        document.getElementById("choice1").style.visibility = "hidden";
+        document.getElementById("films").style.display = "none";
+        document.getElementById("series").style.display = "grid";
+      }
     </script>
   </body>
 </html>
